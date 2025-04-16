@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Challenge: My Italian Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .hint {
+            background-color: #e9f7ef;
+            border-left: 5px solid #28b463;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin: 5px 0;
+        }
+        input[type="submit"] {
+            background-color: #28b463;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OSINT Challenge: My Italian Adventure</h1>
+        <p>Growing up in Italy, my friends and I would always get sushi on Thursdays because of the amazing lunch special deal. All you can eat Sushi along with anything else on the menu! All we had to do was exit the base at the south gate and the restaurant was right there! Can you find the right base AND restaurant?!</p>
+        
+        <div class="hint">
+            <h3>Introduction:</h3>
+            <p>Growing up in Italy, my friends and I would always get sushi on Thursdays because of the amazing lunch special deal. All you had to do was exit the base at the south gate and the restaurant was right there!</p>
+        </div>
+        
+        <div class="hint">
+            <h3>Hint 2:</h3>
+            <p>My dad was in the army 🫡</p>
+        </div>
+        
+        <div class="hint">
+            <h3>Hint 3:</h3>
+            <p>Check the reviews :)</p>
+        </div>
+        
+        <div id="map">
+            <a href="https://www.google.com/maps/place/Italy/@41.1693367,7.4157785,6z/data=!3m1!4b1!4m6!3m5!1s0x12d4fe82448dd203:0xe22cf55c24635e6f!8m2!3d41.87194!4d12.56738!16zL20vMDNyamo?entry=ttu" target="_blank">Google Maps</a>
+        </div>
+
+        <!-- Form for entering answers -->
+        <form id="flagSubmission">
+            <input type="text" id="baseAnswer" placeholder="Enter the name of the base" required>
+            <input type="text" id="restaurantAnswer" placeholder="Enter the name of the restaurant" required>
+            <input type="submit" value="Submit Flag">
+        </form>
+
+        <!-- Result display -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctFlag = "itc101{Vicenza_Caserma_Ederle_Natsu}";
+
+        document.getElementById('flagSubmission').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const base = document.getElementById('baseAnswer').value.toLowerCase().trim();
+            const restaurant = document.getElementById('restaurantAnswer').value.toLowerCase().trim();
+            const result = document.getElementById('result');
+            
+            if (base === "caserma ederle" && restaurant === "natsu") {
+                result.innerHTML = `🎉 Congratulations! Here's your flag: <strong>${correctFlag}</strong>`;
+                result.style.color = "green";
+            } else {
+                result.innerHTML = "❌ Sorry, that's not correct. Try again!";
+                result.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
